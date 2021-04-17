@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!--connected socket library file-->
+    <script src ="/socket.io/socket.io.js"></script>
+    <script type ="text/JavaScript">
+        var socket = io();  // connected to server.js
+        var name;
+        var msg;
+        function set(){
+            // recieve value using document.getElementById("").value
+            name = document.getElementById("name").value;
+            msg = document.getElementById("msg").value;
+            var json = {"name": name, "msg": msg};
+
+            socket.emit("chat", JSON.stringify(json));
+        }
+        
+    </script>
+    <div class = "card" style="border-radius: 5px; border: solid black 2px; width: 25%; background-color: lightgray;">
+        <h2>Chat Log</h2>
+        <label>Name:</label>
+        <input type = "text" id = "name"/><br/>
+        <label>Message:</label>
+        <input type = "text" id = "msg"/><br/>
+        <input type = "submit" value = "Submit" onclick = "set()"/>
+        <input type = "reset" value = "Reset"/><br/>
+    </div>
+</body>
+</html>
